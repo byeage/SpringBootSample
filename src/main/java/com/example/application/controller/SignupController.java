@@ -1,10 +1,13 @@
 package com.example.application.controller;
 
 
+import com.example.domain.user.model.MUser;
+import com.example.domain.user.service.UserService;
 import com.example.application.form.GroupOrder;
 import com.example.application.form.SignupForm;
 import com.example.application.service.UserApplicationService;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,13 @@ public class SignupController {
     @Autowired
     private UserApplicationService userApplicationService;
 
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
     @GetMapping("/signup")
     public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm form)  {
         Map<String, Integer> genderMap = userApplicationService.getGenderMap(locale);
@@ -42,6 +52,11 @@ public class SignupController {
         }
 
         log.info(form.toString());
+
+
+        MUser user = modelMapper.map(form, MUser.class);
+        userService.signup(user);
+
         return "redirect:/login";
     }
 
