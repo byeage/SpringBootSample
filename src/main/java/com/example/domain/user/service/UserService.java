@@ -14,4 +14,8 @@ public interface UserService {
 
 
     public MUser getUserOne(String userId);
+
+    public  void updateUserOne(String userId, String password, String userName);
+
+    public  void  deleteUserOne(String userId);
 }
