@@ -38,20 +38,17 @@ public class UserDetailController {
     }
 
 
-    @PostMapping(value="/detail", params = "update")
+    @PostMapping(value = "/detail", params = "update")
     public String updateUser(UserDetailForm form, Model model) {
-        try {
-            userService.updateUserOne(form.getUserId(), form.getPassword(), form.getUserName());
-        }
-        catch (Exception e) {
-            log.error("Error in user update", e);
-        }
+
+        userService.updateUserOne(form.getUserId(), form.getPassword(), form.getUserName());
+
 
         return "redirect:/user/list";
     }
 
-    @PostMapping(value="/detail", params = "delete")
-        public String deleteUser(UserDetailForm form, Model model) {
+    @PostMapping(value = "/detail", params = "delete")
+    public String deleteUser(UserDetailForm form, Model model) {
         userService.deleteUserOne(form.getUserId());
         return "redirect:/user/list";
     }
