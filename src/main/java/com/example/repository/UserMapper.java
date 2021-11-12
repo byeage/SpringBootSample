@@ -12,7 +12,7 @@ public interface UserMapper {
     public  int insertOne(MUser user);
 
 
-    public List<MUser> findMany();
+    public List<MUser> findMany(MUser user);
 
 
     public MUser findOne(String userId);

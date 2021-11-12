@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import com.example.domain.user.model.MUser;
 import com.example.domain.user.service.UserService;
 import com.example.repository.UserMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MUser> getUsers() {
-        return mapper.findMany();
+    public List<MUser> getUsers(MUser user) {
+        return mapper.findMany(user);
     }
 
 
@@ -30,10 +31,11 @@ public class UserServiceImpl implements UserService {
         return  mapper.findOne(userId);
     }
 
-
+    @Transactional
     @Override
     public void updateUserOne(String userId, String password, String  userName) {
         mapper.updateOne(userId, password, userName);
+        int i = 1 / 0;
     }
 
     @Override
