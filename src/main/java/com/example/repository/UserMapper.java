@@ -22,4 +22,6 @@ public interface UserMapper {
     public int deleteOne(@Param("userId") String userId);
 
 
+    public MUser findLoginUser(String userId );
+
 }
